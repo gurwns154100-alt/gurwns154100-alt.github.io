@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import ud, theme_tiles, theme_rank_table with context %}
+{% block title %}테마주 순위 — 오늘 오른 테마·내린 테마 {{ themes | length }}개 ({{ base_date }}) | {{ cfg.site_name }}{% endblock %}
+{% block desc %}{{ date_short }} 반도체·2차전지·방산·원전 등 {{ themes | length }}개 테마의 관련주 평균 등락률 순위. 1위 {{ themes[0].name }} {{ themes[0].avg | pct }}. 테마별 대장주와 최고 상승 종목까지 매일 정리합니다.{% endblock %}
+{% block path %}/theme/{% endblock %}
+{% block main %}
+<section class="hero hero-sm theme-hero">
+  <div class="wrap">
+    <p class="hero-badges"><span class="free-lg">테마 지도</span><span class="hero-chip">{{ themes | length }}개 테마</span><span class="hero-chip">{{ date_short }} 장 마감</span></p>
+    <h1>오늘의 테마 지도</h1>
+    <p class="lead">관련주 평균 등락률로 줄 세운 테마 순위입니다. 칸을 누르면 테마별 관련주 전체를 볼 수 있습니다.</p>
+    {{ theme_tiles(themes, base, 40) }}
+  </div>
+</section>
+<div class="wrap page">
+  <section class="card">
+    <h2>테마별 등락률 순위</h2>
+    {{ theme_rank_table(themes, base) }}
+    <p class="muted small-note">{{ base_date }} 종가 기준 · 테마 평균은 관련주 등락률의 단순 평균입니다. 관련주 분류는 {{ cfg.site_name }} 테마 사전 기준입니다.</p>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{
+  "_설명": "이 파일만 고치면 사이트가 바뀝니다. theme(색), copy(문구), features(기능)는 비워두면 기본값을 씁니다.",
+  "site_name": "테마나침반",
+  "_site_url_설명": "★ GitHub 아이디가 생기면 [깃허브아이디] 부분만 바꾸세요. 예: https://abc.github.io",
+  "site_url": "https://gurwns154100-alt.github.io",
+  "base_path": "",
+  "_sheet_url_설명": "★ 모든 사이트 공통 접수 시트 주소. 바꾸지 마세요 (모든 신청이 한 시트로 모입니다)",
+  "sheet_url": "https://script.google.com/macros/s/AKfycbyFVUspFhkWK2NVH2eMm90bs9zhJxEoFB5FVcIB7O-T9f6VvPwl7MvpZwO6SN8GHTjjBA/exec",
+  "kakao_url": "",
+  "phone": "",
+  "phone_hours": "평일 09:00–18:00",
+  "reply_days": "1",
+  "biz_info": "상호 [상호명] · 대표 [대표자명] · 주소 [사업장 주소]",
+  "privacy_owner": "[상호명]",
+  "privacy_officer": "성명: [성명] · 직책: [직책] · 연락처: [전화번호] · 이메일: [이메일]",
+  "privacy_effective_date": "[YYYY년 MM월 DD일]",
+  "hosting_company": "GitHub, Inc.",
+  "google_site_verification": "",
+  "naver_site_verification": "",
+  "markets": [
+    "KOSPI",
+    "KOSDAQ"
+  ],
+  "min_marcap": 0,
+  "exclude_name_regex": "스팩|리츠$",
+  "history_days": 550,
+  "workers": 8,
+  "news_top_n": 300,
+  "theme": {
+    "ink": "#140C2E",
+    "ink2": "#231748",
+    "bg": "#F4F2FB",
+    "accent": "#6A3FE0",
+    "ai": "#8E2DB8",
+    "highlight": "#4FE3C1",
+    "up": "#E0313F",
+    "down": "#2A6FD6"
+  },
+  "copy": {
+    "home_title": "{site} | 테마주·관련주 지도 — 오늘의 테마 등락 순위",
+    "home_desc": "반도체·2차전지·방산·원전·로봇 등 주요 테마의 관련주와 오늘 등락률을 한 화면에. 코스피·코스닥 {count}개 종목 AI 분석, 매 거래일 장 마감 후 갱신.",
+    "promo": "오늘의 테마 등락 순위 <b>무료</b> · 장 마감 후 갱신",
+    "nav_ai": "AI 분석",
+    "news_title": "대형주 뉴스 헤드라인",
+    "hero_badges": [
+      "무료",
+      "테마 지도"
+    ],
+    "hero_title": "오늘 돈이 몰린 테마,<br>나침반이 가리킵니다.",
+    "hero_sub": "주요 테마 관련주의 하루 등락을 묶어 계산하고, 테마마다 대장주와 강한 종목을 정리합니다.",
+    "tool_button": "종목 테마 찾기",
+    "hooks_title": "테마 흐름, 한 번 더 짚어보고 싶다면",
+    "hooks": [
+      {
+        "style": "ai",
+        "tag": "테마 흐름 리포트",
+        "title": "속한 테마의 흐름을 정리해 드립니다",
+        "title_nostock": "관심 테마 흐름을 정리해 드립니다",
+        "bullets": [
+          "테마 안에서의 위치(대장주·후발주) 정리",
+          "최근 테마 순환 흐름 요약",
+          "테마 동반 하락 위험 체크"
+        ],
+        "button": "테마 리포트 신청",
+        "hook": "테마 흐름 리포트",
+        "sub": "번호를 남기시면 정리한 내용을 연락드려 설명해 드립니다."
+      },
+      {
+        "style": "pro",
+        "tag": "테마주 상담",
+        "title": "테마 관련 궁금한 점을 상담해 드립니다",
+        "title_nostock": "테마주 투자, 혼자 고민하지 마세요",
+        "bullets": [
+          "보유 테마주 현재 상황 점검",
+          "같은 테마 다른 종목과 비교",
+          "상담 비용 없음"
+        ],
+        "button": "무료 상담 신청",
+        "hook": "테마주 무료 상담",
+        "sub": "번호를 남기시면 영업일 기준 1일 안에 연락드립니다."
+      }
+    ],
+    "lead": {
+      "badge": "테마주 상담 · 비용 0원",
+      "title_1": "내 테마주,",
+      "title_2": "지금 어디쯤?",
+      "sub": "휴대폰 번호만 남기시면 영업일 기준 {reply_days}일 안에 연락드립니다.",
+      "points": [
+        "보유 종목이 속한 테마 흐름 설명",
+        "같은 테마 대장주와 비교",
+        "테마 쏠림·급락 위험 점검"
+      ],
+      "free_big": "0원",
+      "free_text": "가입 없이 번호만 남기면 끝",
+      "button": "테마주 무료 상담 신청",
+      "hook": "테마주 무료 상담"
+    },
+    "popup_title": "{stock}, 속한 테마 흐름이 궁금하다면",
+    "popup_sub": "테마 내 위치와 최근 흐름을 무료로 설명해 드립니다. 번호만 남겨주세요.",
+    "comment_label": "AI 테마 코멘트"
+  },
+  "features": {
+    "news": true,
+    "reports": true,
+    "comment": true,
+    "popup": true,
+    "ai_page": true,
+    "themes": true
+  },
+  "design": {
+    "preset": "aurora",
+    "home_sections": [
+      "themes",
+      "reports",
+      "hooks",
+      "news"
+    ]
+  },
+  "_design_설명": "preset: aurora(테마나침반 전용으로 수정됨). home_sections: themes, news, hooks, reports 중 원하는 것만, 원하는 순서로"
+}

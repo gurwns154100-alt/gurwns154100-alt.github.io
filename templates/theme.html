@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% from "_macros.html" import ud, hook_cards with context %}
+{% block title %}{{ t.name }} 관련주 대장주 정리 — 오늘 테마 등락률 {{ t.avg | pct }} ({{ base_date }}) | {{ cfg.site_name }}{% endblock %}
+{% block desc %}{{ t.name }} 관련주 {{ t.n }}개 종목의 {{ date_short }} 등락률과 대장주. 평균 {{ t.avg | pct }}, 상승 {{ t.up }}개·하락 {{ t.down }}개, 대장주 {{ t.leader.name }} {{ t.leader.chg | pct }}. 매 거래일 장 마감 후 갱신.{% endblock %}
+{% block path %}/theme/{{ t.slug }}/{% endblock %}
+{% block body_attr %} data-stock="{{ t.name }} 테마"{% endblock %}
+{% block head %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": cfg.site_name, "item": site_url ~ "/"},
+    {"@type": "ListItem", "position": 2, "name": "테마 지도", "item": site_url ~ "/theme/"},
+    {"@type": "ListItem", "position": 3, "name": t.name ~ " 관련주", "item": site_url ~ "/theme/" ~ t.slug ~ "/"}
+  ]} | tojson }}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for q, a in faqs %}{"@type":"Question","name":{{ q | tojson }},"acceptedAnswer":{"@type":"Answer","text":{{ a | tojson }}}}{% if not loop.last %},{% endif %}{% endfor %}]}</script>
+{% endblock %}
+{% block main %}
+<section class="hero hero-sm theme-hero">
+  <div class="wrap">
+    <nav class="crumb crumb-dark" aria-label="현재 위치"><a href="{{ base }}/">홈</a> › <a href="{{ base }}/theme/">테마 지도</a> › <span>{{ t.name }}</span></nav>
+    <p class="hero-badges"><span class="free-lg">테마 {{ t.rank }}위 / {{ all_themes | length }}</span><span class="hero-chip">{{ t.n }}종목</span><span class="hero-chip">{{ date_short }} 장 마감</span></p>
+    <h1>{{ t.name }} 관련주</h1>
+    <p class="lead">{{ t.desc }}</p>
+    <div class="tstat">
+      <div class="{{ t.heat }}"><span>테마 평균</span><b>{{ t.avg | pct }}</b></div>
+      <div><span>상승 / 하락</span><b><i class="up">{{ t.up }}</i> / <i class="down">{{ t.down }}</i></b></div>
+      <div><span>대장주</span><b>{{ t.leader.name }}</b><small class="{{ ud(t.leader.chg) }}">{{ t.leader.chg | pct }}</small></div>
+      <div><span>최고 상승</span><b>{{ t.best.name }}</b><small class="{{ ud(t.best.chg) }}">{{ t.best.chg | pct }}</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap page">
+  <section class="card">
+    <h2>{{ date_short }} {{ t.name }} 테마 정리</h2>
+    {% for line in summary %}<p class="sum">{{ line }}</p>{% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>{{ t.name }} 관련주 등락률 <span class="muted small-inline">등락률 순</span></h2>
+    <div class="table-box">
+    <table class="tbl">
+      <thead><tr><th>종목</th><th class="num">종가</th><th class="num">오늘</th><th class="num hide-sm">1주</th><th class="num hide-sm">1개월</th><th class="num">AI 상승확률</th><th class="num hide-sm">시가총액</th></tr></thead>
+      <tbody>
+      {% for x in t.members %}
+      <tr>
+        <td><a class="sname" href="{{ base }}/stock/{{ x.code }}/">{{ x.name }}</a>{% if x.code == t.leader.code %}<span class="lead-tag">대장</span>{% endif %}<span class="code">{{ x.code }}</span></td>
+        <td class="num">{{ x.close | price }}</td>
+        <td class="num {{ ud(x.chg) }}"><b>{{ x.chg | pct }}</b></td>
+        <td class="num hide-sm {{ ud(x.r1w) }}">{{ x.r1w | pct }}</td>
+        <td class="num hide-sm {{ ud(x.r1m) }}">{{ x.r1m | pct }}</td>
+        <td class="num">{% if x.ai.p is not none %}<span class="{{ x.ai.cls }}">{{ '%.0f' | format(x.ai.p * 100) }}%</span>{% else %}-{% endif %}</td>
+        <td class="num hide-sm">{{ x.marcap | won }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <p class="muted small-note">{{ base_date }} 종가 기준 · 관련주 분류는 {{ cfg.site_name }} 테마 사전 기준이며, 회사의 실제 사업 비중과 다를 수 있습니다. AI 상승확률은 5거래일 통계적 추정입니다.</p>
+  </section>
+
+  {{ hook_cards(base) }}
+
+  <section class="card">
+    <h2>자주 묻는 질문</h2>
+    {% for q, a in faqs %}
+    <details class="faq"{% if loop.first %} open{% endif %}><summary>{{ q }}</summary><p>{{ a }}</p></details>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>다른 테마 보기</h2>
+    <ul class="tchips">{% for x in all_themes if x.slug != t.slug %}<li><a class="{{ x.heat }}" href="{{ base }}/theme/{{ x.slug }}/">{{ x.name }} <b>{{ x.avg | pct }}</b></a></li>{% endfor %}</ul>
+  </section>
+</div>
+{% endblock %}
