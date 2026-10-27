@@ -92,6 +92,27 @@
     </div>
   </div>
 </section>
+{% elif sec == "global" and cfg.tradingview %}{% set tv = cfg.tradingview %}
+<section class="global-sec home-sec">
+  <div class="wrap">
+    <div class="card tv-card">
+      <div class="news-head">
+        <h2>{{ tv.title }}</h2>
+        <span class="muted small-inline">{{ tv.sub }}</span>
+      </div>
+      <div class="tradingview-widget-container tv-box" style="height:{{ tv.height or 560 }}px">
+        <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+        <div class="tradingview-widget-copyright"><a href="https://kr.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">TradingView 차트</span></a> 제공</div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {{ {"autosize": true, "symbol": tv.symbol, "interval": "D", "timezone": "Asia/Seoul", "theme": tv.theme or "light", "style": "1",
+            "locale": "kr", "withdateranges": true, "hide_side_toolbar": false, "allow_symbol_change": true, "save_image": false,
+            "calendar": false, "watchlist": tv.watchlist, "support_host": "https://www.tradingview.com"} | tojson }}
+        </script>
+      </div>
+      <p class="news-note">TradingView 무료 위젯 · 시세는 지연 데이터이며 투자 판단의 근거가 아닙니다. 한국 종목은 위젯에서 제공되지 않습니다.</p>
+    </div>
+  </div>
+</section>
 {% elif sec == "hooks" %}
 <section class="hooks-sec home-sec">
   <div class="wrap">

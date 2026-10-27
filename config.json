@@ -111,10 +111,27 @@
     "preset": "aurora",
     "home_sections": [
       "themes",
+      "global",
       "reports",
       "hooks",
       "news"
     ]
   },
-  "_design_설명": "preset: aurora(테마나침반 전용으로 수정됨). home_sections: themes, news, hooks, reports 중 원하는 것만, 원하는 순서로"
+  "_design_설명": "preset: aurora(테마나침반 전용으로 수정됨). home_sections: themes, news, hooks, reports 중 원하는 것만, 원하는 순서로",
+  "_tradingview_설명": "메인 '해외 시장 차트'(TradingView 무료 위젯). 한국 종목(KRX)은 위젯에서 제공되지 않아 해외 지수·원자재만 넣습니다. watchlist에서 빼거나 추가할 수 있어요.",
+  "tradingview": {
+    "title": "해외 시장 차트",
+    "sub": "미국·홍콩 지수와 원자재 흐름 · 지연 시세",
+    "symbol": "NASDAQ:GOOG",
+    "watchlist": [
+      "NASDAQ:NDAQ",
+      "HSI:HSI",
+      "FOREXCOM:SPXUSD",
+      "TVC:USOIL",
+      "NASDAQ:GOOG",
+      "TVC:SILVER"
+    ],
+    "theme": "light",
+    "height": 560
+  }
 }
