@@ -590,7 +590,10 @@ h1{font-weight:800} h2{font-weight:750} h3{font-weight:700}
 }
 /* TradingView 해외 시장 차트 */
 .tv-card{overflow:hidden}
-.tv-box{width:100%;border-radius:14px;overflow:hidden;background:#fff}
+/* TradingView 차트: 위젯 스크립트가 컨테이너 높이를 100%로 덮어쓰므로, 바깥 틀(tv-frame)에 고정 높이를 줍니다 */
+.tv-frame{position:relative;width:100%;height:var(--tv-h,560px);min-height:420px;border-radius:14px;overflow:hidden;background:#fff}
+.tv-frame .tv-box{height:100% !important;width:100% !important}
+.tv-frame iframe{display:block;width:100% !important;height:calc(100% - 32px) !important}
 .tradingview-widget-copyright{font-size:12px;line-height:32px;text-align:center;color:#6b7280}
 .tradingview-widget-copyright a{color:#2962ff;text-decoration:none}
-@media (max-width:760px){.tv-box{height:440px !important}}
+@media (max-width:760px){.tv-frame{height:480px}}
